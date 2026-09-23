@@ -1,0 +1,60 @@
+<mujoco model="quadrotor">
+  <default>
+    <default class="drone_body"><geom rgba="0.20 0.20 0.25 1"/></default>
+    <default class="drone_arm">
+      <geom type="capsule" size="0.008" rgba="0.15 0.15 0.18 1"/>
+    </default>
+    <default class="drone_rotor">
+      <geom type="cylinder" size="0.09 0.005" rgba="0.5 0.6 0.8 0.6"
+            contype="0" conaffinity="0"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <body name="drone" pos="0 0 1.0">
+      <freejoint name="drone_root"/>
+      <inertial pos="0 0 0" mass="1.25"
+                diaginertia="0.0025 0.0025 0.0045"/>
+
+      <geom class="drone_body" type="box" size="0.04 0.04 0.02"/>
+      <!-- red nose marker: points along +x -->
+      <geom type="box" size="0.045 0.005 0.005" pos="0.045 0 0.022" rgba="1 0 0 1"/>
+
+      <geom class="drone_arm" fromto="0 0 0  +0.1500 +0.1500 0"/>
+      <geom class="drone_arm" fromto="0 0 0  +0.1500 -0.1500 0"/>
+      <geom class="drone_arm" fromto="0 0 0  -0.1500 -0.1500 0"/>
+      <geom class="drone_arm" fromto="0 0 0  -0.1500 +0.1500 0"/>
+
+      <geom class="drone_rotor" pos="+0.1500 +0.1500 0.015"/>
+      <site name="rotor_fr" pos="+0.1500 +0.1500 0.015"/>
+      <geom class="drone_rotor" pos="+0.1500 -0.1500 0.015"/>
+      <site name="rotor_br" pos="+0.1500 -0.1500 0.015"/>
+      <geom class="drone_rotor" pos="-0.1500 -0.1500 0.015"/>
+      <site name="rotor_bl" pos="-0.1500 -0.1500 0.015"/>
+      <geom class="drone_rotor" pos="-0.1500 +0.1500 0.015"/>
+      <site name="rotor_fl" pos="-0.1500 +0.1500 0.015"/>
+
+      <site name="imu" pos="0 0 0" size="0.005" rgba="0 1 0 0.5"/>
+
+      <camera name="onboard" pos="0.05 0 0.01" xyaxes="0 -1 0  0 0 1" fovy="90"/>
+      <camera name="chase"   pos="-0.4 0 0.15" xyaxes="0 -1 0  0 0 1" fovy="60"/>
+      <camera name="track"   pos="-3.0 -2.2 1.8" mode="trackcom" fovy="55"
+              xyaxes="0.591 -0.807 0  0.351 0.257 0.900"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="thrust_fr" site="rotor_fr" gear="0 0 1 0 0 +0.01600" ctrlrange="0 7.0"/>
+    <motor name="thrust_br" site="rotor_br" gear="0 0 1 0 0 -0.01600" ctrlrange="0 7.0"/>
+    <motor name="thrust_bl" site="rotor_bl" gear="0 0 1 0 0 +0.01600" ctrlrange="0 7.0"/>
+    <motor name="thrust_fl" site="rotor_fl" gear="0 0 1 0 0 -0.01600" ctrlrange="0 7.0"/>
+  </actuator>
+
+  <sensor>
+    <gyro          name="gyro"        site="imu"/>
+    <accelerometer name="accel"       site="imu"/>
+    <framequat     name="orientation" objtype="site" objname="imu"/>
+    <framepos      name="position"    objtype="site" objname="imu"/>
+    <framelinvel   name="linvel"      objtype="site" objname="imu"/>
+  </sensor>
+</mujoco>

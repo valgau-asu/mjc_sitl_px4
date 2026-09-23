@@ -1,0 +1,33 @@
+{
+  "cmd_topic": "/mujoco_px4/ctrl_cmd",
+  "control_hz": 50,
+  "controller_class": "MyController",
+  "controller_kind": "mpc",
+  "controller_path": "",
+  "duration": 24.0,
+  "name": "mpc",
+  "obstacles": true,
+  "odom_topic": "/mujoco_px4/odometry",
+  "physics_hz": 200,
+  "planner": "inline",
+  "policy_path": "",
+  "ros_package": "mjc_sitl_sitl",
+  "scene": "generated",
+  "setpoint_topic": "/mujoco_px4/trajectory_setpoint",
+  "start": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "task": "figure8",
+  "tolerances": {
+    "max_pos_final": 0.3,
+    "max_pos_rmse": 0.15,
+    "max_start_delay": 1.0,
+    "max_thrust_rmse": 0.5,
+    "require_no_crash": true,
+    "require_realtime": true
+  },
+  "vehicle": "sim_default",
+  "zone": "D"
+}

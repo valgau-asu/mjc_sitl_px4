@@ -1,0 +1,166 @@
+<mujoco model="asu_drone_studio">
+  <compiler angle="degree"/>
+  <option gravity="0 0 -9.81" timestep="0.005"/>
+
+  <default>
+    <geom condim="3" friction="1 0.1 0.1"/>
+    <default class="wall"><geom type="box" material="mat_brick" rgba="0.8 0.8 0.8 0.85"/></default>
+    <default class="zone"><geom type="box" rgba="0.18 0.18 0.18 1"/></default>
+    <default class="gridline"><geom type="box" rgba="0.25 0.35 0.5 1"/></default>
+    <default class="truss"><geom type="box" rgba="0.8 0.8 0.8 1"/></default>
+    <default class="cam_body"><geom type="box" size="0.04 0.04 0.04" rgba="0 0 0 1"/></default>
+    <default class="cam_lens">
+      <geom type="cylinder" size="0.03 0.001" pos="0.041 0 0" euler="0 90 0"
+            rgba="0.6 0.8 1.0 1"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.9 0.9 0.95" rgb2="0.6 0.65 0.7"
+             width="512" height="512"/>
+    <texture name="tex_brick" type="2d" file="wall_brick.png"/>
+    <material name="mat_brick" texture="tex_brick" texuniform="true"
+              texrepeat="28 14" reflectance="0.1"/>
+  </asset>
+
+  <worldbody>
+    <light directional="true" diffuse="0.9 0.9 0.9" specular="0.2 0.2 0.2"
+           pos="0 0 7.0" dir="0 0 -1"/>
+
+    <geom name="floor" type="plane" size="13.58 17.92 0.05" pos="1.8 0.5 0"
+          rgba="0.93 0.89 0.8 1"/>
+    <geom name="zone_a" class="zone" pos="-5.64 -11.28 0.051" size="5.64 5.64 0.01"/>
+        <geom name="zone_b" class="zone" pos="5.64 -11.28 0.051" size="5.64 5.64 0.01"/>
+        <geom name="zone_c" class="zone" pos="-5.64 0.0 0.051" size="5.64 5.64 0.01"/>
+        <geom name="zone_d" class="zone" pos="5.64 0.0 0.051" size="5.64 5.64 0.01"/>
+        <geom name="zone_e" class="zone" pos="-5.64 11.28 0.051" size="5.64 5.64 0.01"/>
+        <geom name="zone_f" class="zone" pos="5.64 11.28 0.051" size="5.64 5.64 0.01"/>
+    <geom name="grid_v"  class="gridline" pos="0 0 0.065"    size="0.05 16.919999999999998 0.005"/>
+    <geom name="grid_h1" class="gridline" pos="0 -5.64 0.065" size="11.28 0.05 0.005"/>
+    <geom name="grid_h2" class="gridline" pos="0 5.64 0.065"  size="11.28 0.05 0.005"/>
+
+    <geom name="wall_n" class="wall" pos="1.8 18.42 3.5"  size="13.58 0.1 3.5"/>
+    <geom name="wall_s" class="wall" pos="1.8 -17.42 3.5" size="13.58 0.1 3.5"/>
+    <geom name="wall_w" class="wall" pos="-11.78 0.5 3.5" size="0.1 17.92 3.5"/>
+    <geom name="wall_e" class="wall" pos="15.38 0.5 3.5"  size="0.1 17.92 3.5"/>
+    <geom name="control_desk" type="box" pos="13.28 -5.64 0.055" size="1.8 11.28 0.01"
+          rgba="0.65 0.7 1.0 1"/>
+
+        <geom class="truss" pos="-11.28 -16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="-11.28 -5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="-11.28 5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="-11.28 16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="0.0 -16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="0.0 -5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="0.0 5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="0.0 16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="11.28 -16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="11.28 -5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="11.28 5.64 3.5" size="0.05 0.05 3.5"/>
+    <geom class="truss" pos="11.28 16.919999999999998 3.5" size="0.05 0.05 3.5"/>
+        <geom class="truss" pos="-11.28 0 7.0" size="0.05 16.919999999999998 0.05"/>
+    <geom class="truss" pos="0.0 0 7.0" size="0.05 16.919999999999998 0.05"/>
+    <geom class="truss" pos="11.28 0 7.0" size="0.05 16.919999999999998 0.05"/>
+    <geom class="truss" pos="0 -16.919999999999998 7.0" size="11.28 0.05 0.05"/>
+    <geom class="truss" pos="0 -5.64 7.0" size="11.28 0.05 0.05"/>
+    <geom class="truss" pos="0 5.64 7.0" size="11.28 0.05 0.05"/>
+    <geom class="truss" pos="0 16.919999999999998 7.0" size="11.28 0.05 0.05"/>
+
+    <body pos="-11.18 -16.82 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -16.82 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -5.74 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -5.74 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -14.10 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -14.10 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -11.28 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -11.28 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -8.46 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -8.46 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -16.82 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -16.82 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -5.74 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -5.74 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -14.10 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -14.10 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -11.28 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -11.28 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 -16.82 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 -5.74 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -8.46 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -8.46 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -5.54 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -5.54 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 5.54 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 5.54 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 -2.82 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 -2.82 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 0.00 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 0.00 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 2.82 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 2.82 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -5.54 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -5.54 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 5.54 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 5.54 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 -2.82 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 -2.82 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 0.00 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 0.00 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 -5.54 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 5.54 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 2.82 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 2.82 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 5.74 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 5.74 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 16.82 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 16.82 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-8.46 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 8.46 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 8.46 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-5.64 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 11.28 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 11.28 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-2.82 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-11.18 14.10 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="-0.10 14.10 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 5.74 7.0" euler="0 0 45"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 5.74 7.0" euler="0 0 135"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 16.82 7.0" euler="0 0 225"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 16.82 7.0" euler="0 0 315"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="2.82 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 8.46 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 8.46 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="5.64 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 11.28 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 11.28 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 5.74 7.0" euler="0 0 90"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="8.46 16.82 7.0" euler="0 0 270"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="0.10 14.10 7.0" euler="0 0 0"><geom class="cam_body"/><geom class="cam_lens"/></body>
+        <body pos="11.18 14.10 7.0" euler="0 0 180"><geom class="cam_body"/><geom class="cam_lens"/></body>
+  </worldbody>
+</mujoco>

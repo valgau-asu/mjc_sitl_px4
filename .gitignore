@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# latex build artifacts (the .pdf is committed on purpose)
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.fls
+*.fdb_latexmk
+!docs/*.pdf
+
+.vscode/
+.idea/
+.DS_Store
